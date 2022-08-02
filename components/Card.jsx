@@ -86,7 +86,7 @@ function Card({ data }) {
           ) : null}
         </div>
       </div>
-      <div onClick={() => router.push("/detail")}>
+      <div onClick={() => router.push(`products/${1}`)}>
         <img src={data.image_url} height={750} alt="product image" />
         <h1 className="font-bold">{data.name}</h1>
         <h2>{formatCurrency(data.price)}</h2>

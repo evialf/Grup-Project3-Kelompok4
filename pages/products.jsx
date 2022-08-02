@@ -36,6 +36,10 @@ function Product() {
 
     formData.append("myFile", selectedFile, selectedFile.name);
   };
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
   return (
     <div className="w-full h-screen overflow-auto bg-white">
       <div className="grid grid-flow-row auto-rows-max grid-cols-2 md:grid-cols-4 lg:grid-cols-5 m-2 gap-3">
