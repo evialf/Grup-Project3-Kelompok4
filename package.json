@@ -15,6 +15,7 @@
     "tw-elements": "^1.0.0-alpha12"
   },
   "devDependencies": {
+    "@tailwindcss/forms": "^0.5.2",
     "autoprefixer": "^10.4.8",
     "eslint": "8.21.0",
     "eslint-config-next": "12.2.3",
