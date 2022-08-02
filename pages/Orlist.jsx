@@ -1,4 +1,4 @@
-import React from "react";
+import styles from "../styles/Orlist.module.css";
 
 export default function Orlist() {
   return (
