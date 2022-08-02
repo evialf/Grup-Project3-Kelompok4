@@ -70,6 +70,36 @@ export default function MyChart() {
       {/* body end */}
 
       {/* FOOTER */}
+      <div className={styles.footer}>
+        <div className={styles.truk}>
+          <Image src="/truk.jpg" width={25} height={25} />
+          <br />
+          <a>
+            bebas pilih jasa
+            <br /> pengiriman
+          </a>
+        </div>
+        <div className={styles.muter}>
+          <Image src="/muter.jpg" width={25} height={25} />
+          <br />
+
+          <a>
+            pengembalian
+            <br /> barang mudah
+          </a>
+        </div>
+        <div className={styles.ceklis}>
+          <Image src="/ceklis.jpg" width={25} height={25} />
+          <br />
+          <a>
+            product 100% <br />
+            original
+          </a>
+        </div>
+      </div>
+      <div className={styles.h1}>
+        <h1>HAPPY SHOPPING</h1>
+      </div>
     </div>
   );
 }

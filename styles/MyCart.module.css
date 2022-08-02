@@ -255,3 +255,41 @@ a.button:active {
   text-decoration: underline;
   display: inline;
 }
+
+.truk {
+  text-align: center;
+  margin-top: 1vw;
+  margin-left: 4vw;
+  float: left;
+}
+.truk a {
+  font-size: 1vw;
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+}
+
+.muter {
+  text-align: center;
+  margin-top: 1vw;
+  margin-left: 4vw;
+  float: left;
+}
+.muter a {
+  font-size: 1vw;
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+}
+
+.ceklis {
+  text-align: center;
+  margin-top: 1vw;
+  margin-left: 4vw;
+  float: left;
+}
+.ceklis a {
+  font-size: 1vw;
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+}
+
+.h1 h1 {
+  margin-left: 60vw;
+  font-size: 4vw;
+}
