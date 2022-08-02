@@ -7,6 +7,10 @@ import Cart2Img from "../assets/sepatu2.jpg";
 export default function MyChart() {
   return (
     <div>
+      <div className={styles.logo}>
+        <Image src="/4logo.png" width={200} height={100} />
+        <p>e-Store</p>
+      </div>
       {/* body start */}
       <div className={styles.emblem}>
         <p>My Cart</p>

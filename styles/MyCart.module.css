@@ -1,7 +1,22 @@
+.logo {
+  margin-top: 1vw;
+  margin-left: 35vw;
+  z-index: 1;
+}
+
+.logo p {
+  margin-top: -8vw;
+  font-size: 5vw;
+  margin-left: 20vw;
+  font-family: Georgia, "Times New Roman", Times, serif;
+  font-style: italic;
+  z-index: 2;
+}
+
 .emblem {
   float: left;
   background-color: #d9d9d9;
-  margin-top: 15vw;
+  margin-top: 5vw;
   color: #000;
   font-weight: bold;
   text-align: center;
@@ -28,7 +43,7 @@
 }
 .bgbody {
   float: inline-end;
-  margin-top: 20vw;
+  margin-top: 5vw;
   background-color: #888888;
   height: 25vw;
 }
@@ -36,7 +51,7 @@
 .isiCart {
   float: inline-end;
   background-color: #fff;
-  margin-top: 20.15vw;
+  margin-top: 10.15vw;
   margin-left: 11.328vw;
   width: 15vw;
   height: 20vw;
