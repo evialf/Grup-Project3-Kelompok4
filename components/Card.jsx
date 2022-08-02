@@ -11,7 +11,7 @@ export const formatCurrency = (number) => {
   return currency;
 };
 
-function Card() {
+function Card({ data }) {
   const router = useRouter();
   const [showModal, setShowModal] = React.useState({ show: false, view: "update" });
 
@@ -86,10 +86,10 @@ function Card() {
           ) : null}
         </div>
       </div>
-      <div onClick={() => router.push("/detail")}>
-        <img src="https://www.adidas.co.id/media/catalog/product/h/q/hq6154_1_footwear_photography_side_lateral_center_view_grey.jpg" height={750} alt="product image" />
-        <h1 className="font-bold">SEPATU TRAIL SAVAGE</h1>
-        <h2>{formatCurrency(3000000)}</h2>
+      <div onClick={() => router.push(`products/${1}`)}>
+        <img src={data.image_url} height={750} alt="product image" />
+        <h1 className="font-bold">{data.name}</h1>
+        <h2>{formatCurrency(data.price)}</h2>
       </div>
     </div>
   );
