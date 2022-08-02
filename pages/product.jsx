@@ -2,10 +2,30 @@ import React from "react";
 import Card from "../components/Card";
 import { FaPlus } from "@react-icons/all-files/fa/FaPlus";
 import FloatingActionButton from "../components/FloatingActionButton";
+import axios from "axios";
 
 function Product() {
   const [showModal, setShowModal] = React.useState(false);
   const [selectedFile, setSelectedFile] = React.useState({ selectedFile: null });
+  const [products, setProducts] = React.useState([]);
+  const [loading, setLoading] = React.useState(false);
+
+  React.useEffect(() => {
+    fetchProducts();
+  }, []);
+
+  const fetchProducts = async () => {
+    setLoading(true);
+    await axios
+      .get(`https://virtserver.swaggerhub.com/pr3ecommerse/EStoreProject/1.0.0/products`)
+      .then((response) => {
+        const { data } = response.data;
+        console.log(data);
+        setProducts(data);
+      })
+      .catch((error) => console.log(error))
+      .finally(() => setLoading(false));
+  };
 
   const onFileChange = (event) => {
     setSelectedFile({ selectedFile: event.target.files[0] });
@@ -19,11 +39,9 @@ function Product() {
   return (
     <div className="w-full h-screen overflow-auto bg-white">
       <div className="grid grid-flow-row auto-rows-max grid-cols-2 md:grid-cols-4 lg:grid-cols-5 m-2 gap-3">
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
+        {products.map((value) => (
+          <Card key={value.id} data={value} />
+        ))}
       </div>
       <div className="absolute bottom-0 right-0 h-16 w-16">
         <FloatingActionButton label={<FaPlus />} onClick={() => setShowModal(true)} />
