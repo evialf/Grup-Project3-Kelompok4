@@ -8,7 +8,7 @@ function Detail() {
     <div className="flex flex-row m-20 gap-2">
       <div className="basis-2/4">
         <img src="https://www.adidas.co.id/media/catalog/product/h/q/hq6154_1_footwear_photography_side_lateral_center_view_grey.jpg" alt="product image" className="w-full" />
-        <h3 className="font-bold mt-2 text-2xl">Deskipsi</h3>
+        <h3 className="font-bold mt-2 text-2xl">Deskripsi</h3>
         <p className="text-justify">
           Sepatu Savage adalah inspirasi dari tahun 1999, yang didesain secara khas dari adidas x IVY PARK — tanpa ada keraguan atau batasan. Dibuat dari bahan kulit mulus untuk menciptakan kanvas yang tegas dengan warna netral dan garis
           yang fleksibel.
