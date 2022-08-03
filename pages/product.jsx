@@ -1,8 +1,9 @@
 import React from "react";
 import Card from "../components/Card";
-import { FaPlus } from "@react-icons/all-files/fa/FaPlus";
+import { FaPlus } from "react-icons/fa";
 import FloatingActionButton from "../components/FloatingActionButton";
 import axios from "axios";
+import Navbar from "../components/Navbar";
 
 function Product() {
   const [showModal, setShowModal] = React.useState(false);
@@ -17,7 +18,7 @@ function Product() {
   const fetchProducts = async () => {
     setLoading(true);
     await axios
-      .get(`https://virtserver.swaggerhub.com/pr3ecommerse/EStoreProject/1.0.0/products`)
+      .get(`https://live-event.social/product`)
       .then((response) => {
         const { data } = response.data;
         console.log(data);
@@ -42,7 +43,8 @@ function Product() {
   }
   return (
     <div className="w-full h-screen overflow-auto bg-white">
-      <div className="grid grid-flow-row auto-rows-max grid-cols-2 md:grid-cols-4 lg:grid-cols-5 m-2 gap-3">
+      <Navbar />
+      <div className="grid grid-flow-row auto-rows-max grid-cols-2 md:grid-cols-4 lg:grid-cols-5 m-3 gap-3">
         {products.map((value) => (
           <Card key={value.id} data={value} />
         ))}
