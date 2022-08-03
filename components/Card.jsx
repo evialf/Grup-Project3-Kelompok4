@@ -1,8 +1,8 @@
 /* eslint-disable @next/next/no-img-element */
 import React from "react";
 import { useRouter } from "next/router";
-import { FaEllipsisV } from "@react-icons/all-files/fa/FaEllipsisV";
-import { Menu, MenuItem, MenuButton } from "@szhsin/react-menu";
+import { FaEllipsisV } from "react-icons/fa";
+import { Menu, MenuItem } from "@szhsin/react-menu";
 import "@szhsin/react-menu/dist/index.css";
 import "@szhsin/react-menu/dist/transitions/slide.css";
 
@@ -86,10 +86,10 @@ function Card({ data }) {
           ) : null}
         </div>
       </div>
-      <div onClick={() => router.push(`products/${1}`)}>
-        <img src={data.image_url} height={750} alt="product image" />
-        <h1 className="font-bold">{data.name}</h1>
-        <h2>{formatCurrency(data.price)}</h2>
+      <div onClick={() => router.push(`product/${data.ID}`)}>
+        <img src={data.Images} height={750} alt="product image" />
+        <h1 className="font-bold">{data.Name}</h1>
+        <h2>{formatCurrency(data.Price)}</h2>
       </div>
     </div>
   );

@@ -1,53 +1,55 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import Navbar from "../components/Navbar";
 import { useRouter } from "next/router";
+import { TokenContext } from "../utils/context";
 
-function Signup() {
+function Signin() {
+  const { token, setToken } = useContext(TokenContext);
   const router = useRouter();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [userName, setUserName] = useState("");
-  const [fullName, setFullName] = useState("");
   const [disabled, setDisabled] = useState(true);
 
   useEffect(() => {
-    if (email && password && userName && fullName) {
-      setDisabled(false);
+    if (token !== "0") {
+      router.push("/");
     } else {
-      setDisabled(true);
+      if (email && password) {
+        setDisabled(false);
+      } else {
+        setDisabled(true);
+      }
     }
-  }, [email, userName, fullName, password]);
+  }, [token, email, password]);
 
   const handleSubmit = async (e) => {
-    setLoading(true);
     e.preventDefault();
     const body = {
       email,
       password,
-      userName,
-      fullName,
     };
     var requestOptions = {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(body),
     };
-    fetch("https://live-event.social/users", requestOptions)
+    fetch("https://live-event.social/login", requestOptions)
       .then((response) => response.json())
       .then((result) => {
-        const { message, data } = result;
-        if (result.message === "success create data") {
-          if (data) {
-            router.push("/signin");
-          }
+        console.log(result);
+        const { code, message, token } = result;
+        if (message === "success login") {
+          localStorage.setItem("token", token);
+          setToken(token);
+          router.push("/");
         }
         alert(message);
       })
-      .catch((error) => {
-        alert(error.toString());
-      })
-      .finally(() => setLoading(false));
+      .catch((err) => {
+        alert(err.toString());
+      });
   };
+
   return (
     <>
       <Navbar />
@@ -65,27 +67,20 @@ function Signup() {
         >
           <div className="form-group text-center lg:mx-96">
             <div className="my-3">
-              <input type="text" className="w-full peer bg-gray-200 border-2 rounded-lg" placeholder="Nama Lengkap" onChange={(e) => setFullName(e.target.value)} />
-            </div>
-            <div className="my-3">
-              <input type="text" className="w-full peer bg-gray-200 border-2 rounded-lg" placeholder="Nama Pengguna" onChange={(e) => setUserName(e.target.value)} />
-            </div>
-            <div className="my-3">
               <input type="email" className="w-full peer bg-gray-200 border-2 rounded-lg" placeholder="Email" onChange={(e) => setEmail(e.target.value)} />
             </div>
             <div className="my-3">
               <input type="password" className="w-full peer bg-gray-200 border-2 rounded-lg" placeholder="Kata Sandi" onChange={(e) => setPassword(e.target.value)} />
             </div>
             <p className="text-[#191E28] my-5">
-              sudah menjadi anggota?{" "}
+              belum menjadi anggota?{" "}
               <span className="text-blue-500">
-                <a href="/signin">Masuk</a>
+                <a href="/signup">Daftar</a>
               </span>
             </p>
           </div>
-          <button className={`text-white bg-[#191E28] p-2 w-full lg:w-64 lg:ml-96 rounded-2xl  `}>Daftar</button>
+          <button className={`text-white bg-[#191E28] p-2 w-full lg:w-64 lg:ml-96 rounded-2xl  `}>Masuk</button>
         </form>
-
         <div>
           <p className="text-center text-[#191E28] mt-5 font-semibold text-sm">
             Daftar email untuk mendapatkan <br /> pembaruan dari produk, penawaran, dan <br /> manfaat anggota Anda
@@ -96,4 +91,4 @@ function Signup() {
   );
 }
 
-export default Signup;
+export default Signin;
