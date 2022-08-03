@@ -3,10 +3,12 @@ import Head from "next/head";
 import Image from "next/image";
 
 import styles from "../styles/Home.module.css";
+import Signup from "./Signup";
 
 export default function Home() {
   return (
 
+<<<<<<< HEAD
     <div>
       <div className={styles.container}>
         <Head>
@@ -36,6 +38,11 @@ export default function Home() {
       </div>
 
    
+=======
+      <main className={styles.main}>
+        <Signup />
+      </main>
+>>>>>>> sign-up
     </div>
   );
 }
