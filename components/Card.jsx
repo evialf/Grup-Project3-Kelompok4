@@ -5,15 +5,61 @@ import { FaEllipsisV } from "react-icons/fa";
 import { Menu, MenuItem } from "@szhsin/react-menu";
 import "@szhsin/react-menu/dist/index.css";
 import "@szhsin/react-menu/dist/transitions/slide.css";
+import axios from "axios";
 
 export const formatCurrency = (number) => {
   const currency = new Intl.NumberFormat("id-ID", { style: "currency", currency: "IDR" }).format(number);
   return currency;
 };
 
-function Card({ data }) {
+function Card({ data, fnFetchProduct }) {
   const router = useRouter();
   const [showModal, setShowModal] = React.useState({ show: false, view: "update" });
+  const [objSubmit, setObjSubmit] = React.useState("");
+
+  const handleSubmit = (e, productId) => {
+    e.preventDefault();
+    const form = new FormData();
+    for (const key in objSubmit) {
+      form.append(key, objSubmit[key]);
+    }
+
+    axios
+      .put(`https://live-event.social/product/${productId}`, form, {
+        headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+      })
+      .then((result) => {
+        alert("berhasil");
+      })
+      .catch((err) => {
+        alert(err.toString());
+      })
+      .finally(() => {
+        setShowModal(false);
+        fnFetchProduct();
+      });
+  };
+
+  const handleChange = (value, key) => {
+    let temp = { ...objSubmit };
+    temp[key] = value;
+    setObjSubmit(temp);
+  };
+
+  const deleteProduct = (e, productId) => {
+    e.preventDefault();
+    axios
+      .delete(`https://live-event.social/product/${productId}`, {
+        headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+      })
+      .then((res) => {
+        alert("berhasil");
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+      .finally(() => fnFetchProduct());
+  };
 
   return (
     <div className="flex flex-col justify-between bg-white text-black font-sans shadow-lg p-3 border-solid border-black hover:border-2">
@@ -44,40 +90,46 @@ function Card({ data }) {
                       </button>
                     </div>
                     {/*body*/}
-                    {showModal.view === "update" ? (
-                      <div className="relative p-6 flex-auto">
-                        <input type="text" className="form-input px-4 py-3 rounded-lg w-full mb-2" placeholder="Judul Produk" />
-                        <input type="text" className="form-input px-4 py-3 rounded-lg w-full mb-2" placeholder="Deskripsi Produk" />
-                        <div className="flex gap-2">
-                          <input type="number" className="form-input px-4 py-3 rounded-lg w-full mb-2" placeholder="Harga" />
-                          <input type="number" className="form-input px-4 py-3 rounded-lg w-full mb-2" placeholder="Stok" />
-                          <input type="text" className="form-input px-4 py-3 rounded-lg w-full mb-2" placeholder="Warna" />
+                    <form onSubmit={(e) => handleSubmit(e, data.ID)}>
+                      {showModal.view === "update" ? (
+                        <div className="relative p-6 flex-auto">
+                          <input type="text" className="form-input px-4 py-3 rounded-lg w-full mb-2" placeholder="Judul Produk" defaultValue={data.Name} onChange={(e) => handleChange(e.target.value, "name")} />
+                          <input type="text" className="form-input px-4 py-3 rounded-lg w-full mb-2" placeholder="Deskripsi Produk" defaultValue={data.Description} onChange={(e) => handleChange(e.target.value, "description")} />
+                          <div className="flex gap-2">
+                            <input type="number" className="form-input px-4 py-3 rounded-lg w-full mb-2" placeholder="Harga" defaultValue={data.Price} onChange={(e) => handleChange(e.target.value, "price")} />
+                            <input type="number" className="form-input px-4 py-3 rounded-lg w-full mb-2" placeholder="Stok" defaultValue={data.Stock} onChange={(e) => handleChange(e.target.value, "stock")} />
+                          </div>
+                          <input
+                            type="file"
+                            className="form-input px-4 py-3 rounded-lg w-full mb-2"
+                            // onChange={(e) => {
+                            //   handleChange(e.target.files[0], "images");
+                            // }}
+                          />
                         </div>
-                        <input type="file" className="form-input px-4 py-3 rounded-lg w-full mb-2" placeholder="Warna" />
-                      </div>
-                    ) : (
-                      <div className="relative p-6 flex-auto">
-                        <p className="my-4 text-black text-lg leading-relaxed">Anda yakin ingin menghapus produk ini?</p>
-                      </div>
-                    )}
+                      ) : (
+                        <div className="relative p-6 flex-auto">
+                          <p className="my-4 text-black text-lg leading-relaxed">Anda yakin ingin menghapus produk ini?</p>
+                        </div>
+                      )}
 
-                    {/*footer*/}
-                    <div className="flex items-center justify-end p-6 border-t border-solid border-slate-200 rounded-b">
-                      <button
-                        className="bg-gray-300 text-black active:bg-gray-400 background-transparent font-bold uppercase px-6 py-3 text-sm rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
-                        type="button"
-                        onClick={() => setShowModal(false)}
-                      >
-                        {showModal.view === "update" ? "Simpan" : "Ya"}
-                      </button>
-                      <button
-                        className="bg-gray-300 text-black active:bg-gray-400 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
-                        type="button"
-                        onClick={() => setShowModal(false)}
-                      >
-                        {showModal.view === "update" ? "Batal" : "Tidak"}
-                      </button>
-                    </div>
+                      {/*footer*/}
+                      <div className="flex items-center justify-end p-6 border-t border-solid border-slate-200 rounded-b">
+                        <button
+                          className="bg-gray-300 text-black active:bg-gray-400 background-transparent font-bold uppercase px-6 py-3 text-sm rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                          onClick={showModal.view === "update" ? "" : (e) => deleteProduct(e, data.ID)}
+                        >
+                          {showModal.view === "update" ? "Simpan" : "Ya"}
+                        </button>
+                        <button
+                          className="bg-gray-300 text-black active:bg-gray-400 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                          type="button"
+                          onClick={() => setShowModal(false)}
+                        >
+                          {showModal.view === "update" ? "Batal" : "Tidak"}
+                        </button>
+                      </div>
+                    </form>
                   </div>
                 </div>
               </div>

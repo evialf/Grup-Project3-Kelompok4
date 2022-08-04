@@ -42,7 +42,7 @@ const Navbar = () => {
               <button className="font-semibold text-3xl hover:underline">Logout</button>
             </div>
           ) : (
-            <Link href="/signup">
+            <Link href="/Signup">
               <a className="font-semibold text-3xl hover:underline">Daftar</a>
             </Link>
           )}
