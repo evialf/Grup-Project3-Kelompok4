@@ -1,4 +1,5 @@
 import { AiOutlineShoppingCart } from "react-icons/ai";
+import { BsFillCartCheckFill } from "react-icons/bs";
 import Link from "next/link";
 import Image from "next/image";
 import Logo from "../assets/Logo.jpg";
@@ -43,20 +44,27 @@ const Navbar = () => {
               <a className="font-semibold text-3xl hover:underline">Profile</a>
             </Link>
           )}
+
           {token !== "0" ? (
             <div onClick={() => handleLogout()}>
               <button className="font-semibold text-3xl hover:underline">
-                Logout
+                Keluar
               </button>
             </div>
           ) : (
-            <Link href="/signup">
-              <a className="font-semibold text-3xl hover:underline">Daftar</a>
+            <Link href="/signin">
+              <a className="font-semibold text-3xl hover:underline">Masuk</a>
             </Link>
           )}
         </div>
+
+        <Link href="/orlist">
+          <a title="OrderList">
+            <BsFillCartCheckFill className=" text-4xl" />
+          </a>
+        </Link>
         <Link href="/mycart">
-          <a title="My Cart">
+          <a title="MyCart">
             <AiOutlineShoppingCart className="text-4xl" />
           </a>
         </Link>
