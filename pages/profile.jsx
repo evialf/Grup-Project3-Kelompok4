@@ -14,6 +14,7 @@ export default function Profile() {
   const [address, setAddres] = useState("");
   const [phone, setPhone] = useState("");
   const [image, setImage] = useState("");
+  const [loading, setLoading] = useState("");
 
   useEffect(() => {
     fetchData();
