@@ -37,7 +37,7 @@ function Signin() {
       .then((response) => response.json())
       .then((result) => {
         console.log(result);
-        const { code, message, token } = result;
+        const { message, token, data } = result;
         if (message === "success login") {
           localStorage.setItem("token", token);
           setToken(token);

@@ -51,9 +51,13 @@ const Navbar = () => {
                 Keluar
               </button>
             </div>
-          ) : (
+          ) :
             <Link href="/signin">
               <a className="font-semibold text-3xl hover:underline">Masuk</a>
+
+            <Link href="/Signup">
+              <a className="font-semibold text-3xl hover:underline">Daftar</a>
+
             </Link>
           )}
         </div>
