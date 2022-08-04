@@ -8,18 +8,8 @@ function Signup() {
   const [password, setPassword] = useState("");
   const [userName, setUserName] = useState("");
   const [fullName, setFullName] = useState("");
-  const [disabled, setDisabled] = useState(true);
-
-  useEffect(() => {
-    if (email && password && userName && fullName) {
-      setDisabled(false);
-    } else {
-      setDisabled(true);
-    }
-  }, [email, userName, fullName, password]);
 
   const handleSubmit = async (e) => {
-    setLoading(true);
     e.preventDefault();
     const body = {
       email,
@@ -45,8 +35,7 @@ function Signup() {
       })
       .catch((error) => {
         alert(error.toString());
-      })
-      .finally(() => setLoading(false));
+      });
   };
   return (
     <>
