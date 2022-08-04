@@ -1,5 +1,6 @@
 import Image from "next/image";
 import styles from "../styles/MyCart.module.css";
+import Link from "next/link";
 
 import CartImg from "../assets/cart.jpg";
 import Cart2Img from "../assets/sepatu2.jpg";
@@ -8,10 +9,12 @@ export default function MyChart() {
   return (
     <>
       <div>
-        <div className={styles.logo}>
-          <Image src="/4logo.png" width="100" height="75" alt="logo" />
-          <p>e-Store</p>
-        </div>
+        <Link href="/">
+          <div className={styles.logo}>
+            <Image src="/4logo.png" width="100" height="75" alt="logo" />
+            <p>e-Store</p>
+          </div>
+        </Link>
         {/* body start */}
         <div className={styles.emblem}>
           <p>My Cart</p>
