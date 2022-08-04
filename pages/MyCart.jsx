@@ -1,7 +1,6 @@
 import Image from "next/image";
 import styles from "../styles/MyCart.module.css";
 
-import Navbar from "../components/Navbar";
 import CartImg from "../assets/cart.jpg";
 import Cart2Img from "../assets/sepatu2.jpg";
 
@@ -10,7 +9,7 @@ export default function MyChart() {
     <>
       <div>
         <div className={styles.logo}>
-          <Image src="/4logo.png" width={120} height={75} />
+          <Image src="/4logo.png" width="100" height="75" alt="logo" />
           <p>e-Store</p>
         </div>
         {/* body start */}
@@ -78,7 +77,7 @@ export default function MyChart() {
         {/* FOOTER */}
         <div className={styles.footer}>
           <div className={styles.truk}>
-            <Image src="/truk.jpg" width={25} height={25} />
+            <Image src="/truk.jpg" width={25} height={25} alt="truk" />
             <br />
             <a>
               bebas pilih jasa
@@ -86,7 +85,7 @@ export default function MyChart() {
             </a>
           </div>
           <div className={styles.muter}>
-            <Image src="/muter.jpg" width={25} height={25} />
+            <Image src="/muter.jpg" width={25} height={25} alt="muter" />
             <br />
 
             <a>
@@ -95,7 +94,7 @@ export default function MyChart() {
             </a>
           </div>
           <div className={styles.ceklis}>
-            <Image src="/ceklis.jpg" width={25} height={25} />
+            <Image src="/ceklis.jpg" width={25} height={25} alt="ceklis" />
             <br />
             <a>
               product 100% <br />

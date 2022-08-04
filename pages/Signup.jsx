@@ -36,7 +36,7 @@ function Signup() {
       .then((response) => response.json())
       .then((result) => {
         const { message, data } = result;
-        if (result.message === "success create data") {
+        if (message === "success create data") {
           if (data) {
             router.push("/signin");
           }
@@ -82,8 +82,8 @@ function Signup() {
                 <a href="/signin">Masuk</a>
               </span>
             </p>
+            <button className={`text-white bg-[#191E28] p-2 w-full rounded-2xl`}>Daftar</button>
           </div>
-          <button className={`text-white bg-[#191E28] p-2 w-full lg:w-64 lg:ml-96 rounded-2xl  `}>Daftar</button>
         </form>
 
         <div>

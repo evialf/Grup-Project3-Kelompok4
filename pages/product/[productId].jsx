@@ -37,7 +37,7 @@ function Detail() {
       <Navbar />
       <div className="flex flex-row m-5 gap-2">
         <div className="basis-2/4">
-          <img src="https://www.adidas.co.id/media/catalog/product/h/q/hq6154_1_footwear_photography_side_lateral_center_view_grey.jpg" alt="product image" className="w-full" />
+          <img src={product.Images === "" ? "https://via.placeholder.com/750" : product.Images} alt="product image" className="w-full" />
           <h3 className="font-bold mt-2 text-2xl">Deskripsi</h3>
           <p className="text-justify">{product.Description}</p>
         </div>

@@ -29,7 +29,7 @@ const Navbar = () => {
           <Link href="/product">
             <a className="font-semibold text-3xl hover:underline ">Produk</a>
           </Link>
-          <Link href="/product">
+          <Link href="/contact">
             <a className="font-semibold text-3xl hover:underline">Kontak</a>
           </Link>
           {token !== "0" && (

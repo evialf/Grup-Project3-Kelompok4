@@ -39,7 +39,7 @@ function Product() {
   };
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <div className="text-center">Loading...</div>;
   }
   return (
     <div className="w-full h-screen overflow-auto bg-white">
