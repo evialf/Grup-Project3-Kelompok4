@@ -78,8 +78,8 @@ function Signin() {
                 <a href="/signup">Daftar</a>
               </span>
             </p>
+            <button className={`text-white bg-[#191E28] p-2 w-full rounded-2xl`}>Masuk</button>
           </div>
-          <button className={`text-white bg-[#191E28] p-2 w-full lg:w-64 lg:ml-96 rounded-2xl  `}>Masuk</button>
         </form>
         <div>
           <p className="text-center text-[#191E28] mt-5 font-semibold text-sm">

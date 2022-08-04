@@ -1,7 +1,7 @@
 import styles from "../styles/OrList.module.css";
 import Navbar from "../components/Navbar";
 
-export default function orlist() {
+export default function Orlist() {
   return (
     <>
       <Navbar />

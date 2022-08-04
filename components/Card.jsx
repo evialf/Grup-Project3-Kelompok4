@@ -87,7 +87,7 @@ function Card({ data }) {
         </div>
       </div>
       <div onClick={() => router.push(`product/${data.ID}`)}>
-        <img src={data.Images} height={750} alt="product image" />
+        <img src={data.Images === "" ? "https://via.placeholder.com/750" : data.Images} height={750} alt="product image" />
         <h1 className="font-bold">{data.Name}</h1>
         <h2>{formatCurrency(data.Price)}</h2>
       </div>
