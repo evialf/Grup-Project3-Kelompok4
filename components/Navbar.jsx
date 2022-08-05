@@ -2,7 +2,7 @@ import { AiOutlineShoppingCart } from "react-icons/ai";
 import { BsFillCartCheckFill } from "react-icons/bs";
 import Link from "next/link";
 import Image from "next/image";
-import Logo from "../assets/Logo.jpg";
+import Logo from "../assets/logo.jpg";
 import { useContext } from "react";
 import { TokenContext } from "../utils/context";
 import { useRouter } from "next/router";
