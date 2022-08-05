@@ -4,12 +4,16 @@ import { FaPlus } from "react-icons/fa";
 import FloatingActionButton from "../components/FloatingActionButton";
 import axios from "axios";
 import Navbar from "../components/Navbar";
+import { TokenContext, RoleContext } from "../utils/context";
+import { useContext } from "react";
 
 function Product() {
   const [showModal, setShowModal] = React.useState(false);
   const [products, setProducts] = React.useState([]);
   const [loading, setLoading] = React.useState(false);
   const [objSubmit, setObjSubmit] = React.useState("");
+  const { token, setToken } = useContext(TokenContext);
+  const { role, setRole } = useContext(RoleContext);
 
   React.useEffect(() => {
     fetchProducts();
@@ -80,7 +84,7 @@ function Product() {
         ))}
       </div>
       <div className="absolute bottom-0 right-0 h-16 w-16">
-        <FloatingActionButton label={<FaPlus />} onClick={() => setShowModal(true)} />
+        {token !== "0" && role === "admin" && <FloatingActionButton label={<FaPlus />} onClick={() => setShowModal(true)} />}
         {showModal ? (
           <>
             <div className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">

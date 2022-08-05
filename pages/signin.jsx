@@ -1,11 +1,12 @@
 import React, { useState, useEffect, useContext } from "react";
 import Navbar from "../components/Navbar";
 import { useRouter } from "next/router";
-import { TokenContext } from "../utils/context";
+import { TokenContext, RoleContext } from "../utils/context";
 import Link from "next/link";
 
 function Signin() {
   const { token, setToken } = useContext(TokenContext);
+  const { role, setRole } = useContext(RoleContext);
   const router = useRouter();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -38,10 +39,12 @@ function Signin() {
       .then((response) => response.json())
       .then((result) => {
         console.log(result);
-        const { message, token, data } = result;
+        const { message, token, role } = result;
         if (message === "success login") {
           localStorage.setItem("token", token);
+          localStorage.setItem("role", role);
           setToken(token);
+          setRole(role);
           router.push("/");
         }
         alert(message);

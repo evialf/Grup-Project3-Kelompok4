@@ -11,14 +11,14 @@ function MyApp({ Component, pageProps }) {
   useEffect(() => {
     const getToken = localStorage.getItem("token") || "0";
     setToken(getToken);
-    const getRole = localStorage.getItem("role") || "0";
+    const getRole = localStorage.getItem("role") || "admin";
     setRole(getRole);
   }, [token, role]);
 
   if (token) {
     return (
       <TokenContext.Provider value={jwtToken}>
-        <RoleContext.Provider value={role}>
+        <RoleContext.Provider value={roleUser}>
           <Component {...pageProps} />
         </RoleContext.Provider>
       </TokenContext.Provider>
