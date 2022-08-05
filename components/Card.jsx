@@ -6,6 +6,8 @@ import { Menu, MenuItem } from "@szhsin/react-menu";
 import "@szhsin/react-menu/dist/index.css";
 import "@szhsin/react-menu/dist/transitions/slide.css";
 import axios from "axios";
+import { TokenContext, RoleContext } from "../utils/context";
+import { useContext } from "react";
 
 export const formatCurrency = (number) => {
   const currency = new Intl.NumberFormat("id-ID", { style: "currency", currency: "IDR" }).format(number);
@@ -16,6 +18,8 @@ function Card({ data, fnFetchProduct }) {
   const router = useRouter();
   const [showModal, setShowModal] = React.useState({ show: false, view: "update" });
   const [objSubmit, setObjSubmit] = React.useState("");
+  const { token, setToken } = useContext(TokenContext);
+  const { role, setRole } = useContext(RoleContext);
 
   const handleSubmit = (e, productId) => {
     e.preventDefault();
@@ -65,17 +69,19 @@ function Card({ data, fnFetchProduct }) {
     <div className="flex flex-col justify-between bg-white text-black font-sans shadow-lg p-3 border-solid border-black hover:border-2">
       <div className="relative">
         <div className="absolute top-0 right-0">
-          <Menu
-            menuButton={
-              <button className="hover:bg-gray-200 rounded-full p-2">
-                <FaEllipsisV />
-              </button>
-            }
-            transition
-          >
-            <MenuItem onClick={() => setShowModal({ show: true, view: "update" })}>Ubah</MenuItem>
-            <MenuItem onClick={() => setShowModal({ show: true, view: "delete" })}>Hapus</MenuItem>
-          </Menu>
+          {token !== "0" && role === "admin" && (
+            <Menu
+              menuButton={
+                <button className="hover:bg-gray-200 rounded-full p-2">
+                  <FaEllipsisV />
+                </button>
+              }
+              transition
+            >
+              <MenuItem onClick={() => setShowModal({ show: true, view: "update" })}>Ubah</MenuItem>
+              <MenuItem onClick={() => setShowModal({ show: true, view: "delete" })}>Hapus</MenuItem>
+            </Menu>
+          )}
           {showModal.show ? (
             <>
               <div className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
