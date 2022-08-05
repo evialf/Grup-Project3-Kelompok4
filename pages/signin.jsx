@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import Navbar from "../components/Navbar";
 import { useRouter } from "next/router";
 import { TokenContext } from "../utils/context";
+import Link from "next/link";
 
 function Signin() {
   const { token, setToken } = useContext(TokenContext);
@@ -74,9 +75,9 @@ function Signin() {
             </div>
             <p className="text-[#191E28] my-5">
               belum menjadi anggota?{" "}
-              <span className="text-blue-500">
-                <a href="/signup">Daftar</a>
-              </span>
+              <Link href="/Signup">
+                <a className="text-blue-500">Daftar</a>
+              </Link>
             </p>
             <button className={`text-white bg-[#191E28] p-2 w-full rounded-2xl`}>Masuk</button>
           </div>

@@ -22,13 +22,7 @@ const Navbar = () => {
       <div className="flex justify-between px-16 py-7 w-full h-24 ">
         <Link href="/">
           <a className="flex" title="4 e-store">
-            <Image
-              src={Logo}
-              alt="Logo"
-              width="70"
-              height="30"
-              margin-right="20"
-            />
+            <Image src={Logo} alt="Logo" width="70" height="30" margin-right="20" />
             <h2 className="font-semibold text-3xl">e-Store</h2>
           </a>
         </Link>
@@ -47,9 +41,7 @@ const Navbar = () => {
 
           {token !== "0" ? (
             <div onClick={() => handleLogout()}>
-              <button className="font-semibold text-3xl hover:underline">
-                Keluar
-              </button>
+              <button className="font-semibold text-3xl hover:underline">Keluar</button>
             </div>
           ) : (
             <Link href="/signin">
@@ -57,13 +49,12 @@ const Navbar = () => {
             </Link>
           )}
         </div>
-
-        <Link href="/orlist">
+        <Link href="/Orlist">
           <a title="OrderList">
             <BsFillCartCheckFill className=" text-4xl" />
           </a>
         </Link>
-        <Link href="/mycart">
+        <Link href="/MyCart">
           <a title="MyCart">
             <AiOutlineShoppingCart className="text-4xl" />
           </a>
