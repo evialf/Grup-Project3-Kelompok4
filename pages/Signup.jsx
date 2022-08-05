@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Navbar from "../components/Navbar";
 import { useRouter } from "next/router";
+import Link from "next/link";
 
 function Signup() {
   const router = useRouter();
@@ -67,9 +68,9 @@ function Signup() {
             </div>
             <p className="text-[#191E28] my-5">
               sudah menjadi anggota?{" "}
-              <span className="text-blue-500">
-                <a href="/signin">Masuk</a>
-              </span>
+              <Link href="/signin">
+                <a className="text-blue-500">Masuk</a>
+              </Link>
             </p>
             <button className={`text-white bg-[#191E28] p-2 w-full rounded-2xl`}>Daftar</button>
           </div>
